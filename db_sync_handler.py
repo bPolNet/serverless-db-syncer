@@ -68,91 +68,13 @@ def get_success_response(event):
     return response
 
 
-def sync_shop(event, context):
-    sync_table(os.environ['TABLE_SHOP'])
+def sync_daily(event, context):
+    for sync_table in os.environ['TABLE_LIST']:daily:
+        sync_table_in_loop(sync_table)
     return get_success_response(event)
 
 
-def sync_order(event, context):
-    sync_table_in_loop(os.environ['TABLE_ORDER'])
-    return get_success_response(event)
-
-
-def sync_product(event, context):
-    sync_table_in_loop(os.environ['TABLE_PRODUCT'])
-    return get_success_response(event)
-
-
-def sync_business_category(event, context):
-    sync_table(os.environ['TABLE_BUSINESS_CATEGORY'])
-    return get_success_response(event)
-
-
-def sync_product_business_category(event, context):
-    sync_table(os.environ['TABLE_PRODUCT_BUSINESS_CATEGORY'])
-    return get_success_response(event)
-
-
-def sync_product_lang(event, context):
-    sync_table_in_loop(os.environ['TABLE_PRODUCT_LANG'])
-    return get_success_response(event)
-
-
-def sync_manufacturer(event, context):
-    sync_table(os.environ['TABLE_MANUFACTURER'])
-    return get_success_response(event)
-
-
-def sync_order_cart_rule(event, context):
-    sync_table(os.environ['TABLE_ORDER_CART_RULE'])
-    return get_success_response(event)
-
-
-def sync_cart_rule(event, context):
-    sync_table(os.environ['TABLE_CART_RULE'])
-    return get_success_response(event)
-
-
-def sync_order_detail(event, context):
-    sync_table_in_loop(os.environ['TABLE_ORDER_DETAIL'])
-    return get_success_response(event)
-
-
-def sync_zaius_permission(event, context):
-    sync_table_in_loop(os.environ['TABLE_ZAIUS_PERMISSION'])
-    return get_success_response(event)
-
-
-def sync_warehouse_supplier_order_detail(event, context):
-    sync_table(os.environ['TABLE_WAREHOUSE_SUPPLIER_ORDER_DETAIL'])
-    return get_success_response(event)
-
-
-def sync_warehouse_supplier_order(event, context):
-    sync_table(os.environ['TABLE_WAREHOUSE_SUPPLIER_ORDER'])
-    return get_success_response(event)
-
-
-def sync_supplier_order_history(event, context):
-    sync_table(os.environ['TABLE_SUPPLIER_ORDER_HISTORY'])
-    return get_success_response(event)
-
-
-def sync_customer(event, context):
-    sync_table_in_loop(os.environ['TABLE_CUSTOMER'])
-    return get_success_response(event)
-
-
-def sync_address(event, context):
-    sync_table_in_loop(os.environ['TABLE_ADDRESS'])
-    return get_success_response(event)
-
-
-def sync_country(event, context):
-    sync_table(os.environ['TABLE_COUNTRY'])
-    return get_success_response(event)
-
-
-def sync_pack(event, context):
-    sync_table_in_loop(os.environ['TABLE_PACK'])
+def sync_hourly(event, context):
+    for sync_table in os.environ['TABLE_LIST']:hourly:
+        sync_table_in_loop(sync_table)
     return get_success_response(event)

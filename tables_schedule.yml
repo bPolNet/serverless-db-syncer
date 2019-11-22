@@ -1,0 +1,4 @@
+hourly:
+  - ps_customer
+daily:
+  - ps_shop
