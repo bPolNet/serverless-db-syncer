@@ -14,11 +14,11 @@ provider:
   name: aws
   vpc:
     securityGroupIds:
-      - ${file(env/config.yml).SECURITY_GROUP}
+      - sg-740b5b11
     subnetIds:
-      - ${file(env/config.yml).SUBNET_1}
-      - ${file(env/config.yml).SUBNET_2}
-      - ${file(env/config.yml).SUBNET_3}
+      - subnet-b5df50c2
+      - subnet-db58f982
+      - subnet-4c503729
   timeout: 900
   runtime: python3.6
   region: eu-west-1
