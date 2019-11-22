@@ -1,0 +1,15 @@
+version: 0.1
+
+phases:
+  install:
+    commands:
+      - pwd
+      - ls -al
+      - npm install -g serverless
+  pre_build:
+    commands:
+      - pwd && sls plugin install -n serverless-python-requirements
+  build:
+    commands:
+      - ls -al
+      - sls deploy --stage ${BUILD_ENV}
