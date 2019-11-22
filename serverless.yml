@@ -38,16 +38,21 @@ provider:
     TARGET_HOST: ${self:custom.targetHost}
     TARGET_USER: ${self:custom.targetUser}
     TARGET_PASS: ${self:custom.targetPass}
-    TARGET_DB: ${self:custom.targetDb} 
+    TARGET_DB: ${self:custom.targetDb}
+    TABLE_LIST: ${file(../tables_schedule.yml):myTableList}
 
 
 functions:
-  syncShop:
-    handler: db_sync_handler.sync_shop
+  syncHourly:
+    handler: db_sync_handler.sync_hourly
     events:
       - schedule:
-          rate: cron(0 */6 * * ? *)
-
+          rate: cron(0 0 * ? * *)
+  syncDaily:
+    handler: db_sync_handler.sync_daily
+    events:
+      - schedule:
+          rate: cron(0 0 0 * * ?)
           
           
 #   execSqlExecuter:
