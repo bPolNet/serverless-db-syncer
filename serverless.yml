@@ -30,8 +30,6 @@ provider:
   timeout: 900
   runtime: python3.6
   region: eu-west-1
-  deploymentBucket:
-    name: interdrinks-db-sync
   environment:
     SOURCE_HOST: ${self:custom.sourceHost}
     SOURCE_USER: ${self:custom.sourceUser}
