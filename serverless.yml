@@ -4,14 +4,14 @@ custom:
   pythonRequirements:
     dockerizePip: true
 
-  sourceHost: "**"
-  sourceUser: "**"
-  sourcePass: "**"
-  sourceDb: "**"
-  targetHost: "**"
-  targetUser: "**"
-  targetPass: "**"
-  targetDb: "**"
+  sourceHost: ${opt:source_host}
+  sourceUser: ${opt:source_user}
+  sourcePass: ${opt:source_pass}
+  sourceDb: ${opt:source_db}
+  targetHost: ${opt:target_host}
+  targetUser: ${opt:target_user}
+  targetPass: ${opt:target_pass}
+  targetDb: ${opt:target_db}
 
   tableShop: "ps_shop"
   tableOrder: "ps_orders"
