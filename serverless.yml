@@ -169,11 +169,11 @@ functions:
           rate: cron(54 */6 * * ? *)
           
           
-  execMarketingVoucherV2:
-    handler: file_sync_handler.exec_marketing_voucher_v2
-    events:
-      - schedule:
-          rate: cron(54 2 * * ? *)
+#   execSqlExecuter:
+#     handler: file_sync_handler.script_to_be_executed
+#     events:
+#       - schedule:
+#           rate: cron(54 2 * * ? *)
 
 iamRoleStatements:
   - Effect: Allow
