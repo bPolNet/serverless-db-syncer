@@ -13,25 +13,6 @@ custom:
   targetPass: ${opt:target_pass}
   targetDb: ${opt:target_db}
 
-  tableShop: "ps_shop"
-  tableOrder: "ps_orders"
-  tableProduct: "ps_product"
-  tableBusinessCategory: "business_category"
-  tableProductBusinessCategory: "product_business_category"
-  tableProductLang: "ps_product_lang"
-  tableManufacturer: "ps_manufacturer"
-  tablePack: "ps_pack"
-  tableOrderCartRule: "ps_order_cart_rule"
-  tableCartRule: "ps_cart_rule"
-  tableOrderDetail: "ps_order_detail"
-  tableWarehouseSupplierOrderDetail: "warehouse_supplier_order_details"
-  tableWarehouseSupplierOrder: "warehouse_supplier_orders"
-  tableWarehouseSupplierOrdersHistory: "warehouse_supplier_orders_history"
-  tableCustomer: "ps_customer"
-  tableAddress: "ps_address"
-  tableCountry: "ps_country"
-
-
 package:
   exclude:
     - venv/**
@@ -41,11 +22,11 @@ provider:
   name: aws
   vpc:
     securityGroupIds:
-      - sg-207e985b
+      - ${opt:security_group}
     subnetIds:
-      - subnet-0778955e
-      - subnet-5d61af2a
-      - subnet-30cf6c55
+      - ${opt:subnet_1}
+      - ${opt:subnet_2}
+      - ${opt:subnet_3}
   timeout: 900
   runtime: python3.6
   region: eu-west-1
@@ -61,25 +42,6 @@ provider:
     TARGET_PASS: ${self:custom.targetPass}
     TARGET_DB: ${self:custom.targetDb} 
 
-    TABLE_SHOP: ${self:custom.tableShop}
-    TABLE_ORDER: ${self:custom.tableOrder}
-    TABLE_PRODUCT: ${self:custom.tableProduct}
-    TABLE_BUSINESS_CATEGORY: ${self:custom.tableBusinessCategory}
-    TABLE_PRODUCT_BUSINESS_CATEGORY: ${self:custom.tableProductBusinessCategory}
-    TABLE_PRODUCT_LANG: ${self:custom.tableProductLang}
-    TABLE_MANUFACTURER: ${self:custom.tableManufacturer}
-    TABLE_PACK: ${self:custom.tablePack}
-    TABLE_ORDER_CART_RULE: ${self:custom.tableOrderCartRule}
-    TABLE_CART_RULE: ${self:custom.tableCartRule}
-    TABLE_ORDER_DETAIL: ${self:custom.tableOrderDetail}
-    TABLE_WAREHOUSE_SUPPLIER_ORDER_DETAIL: ${self:custom.tableWarehouseSupplierOrderDetail}
-    TABLE_WAREHOUSE_SUPPLIER_ORDER: ${self:custom.tableWarehouseSupplierOrder}
-    TABLE_SUPPLIER_ORDER_HISTORY: ${self:custom.tableWarehouseSupplierOrdersHistory}
-    TABLE_CUSTOMER: ${self:custom.tableCustomer}
-    TABLE_ADDRESS: ${self:custom.tableAddress}
-    TABLE_COUNTRY: ${self:custom.tableCountry}
-
-
 
 functions:
   syncShop:
@@ -87,86 +49,7 @@ functions:
     events:
       - schedule:
           rate: cron(0 */6 * * ? *)
-  syncOrder:
-    handler: db_sync_handler.sync_order
-    events:
-      - schedule:
-          rate: cron(3 */6 * * ? *)
-  syncProduct:
-    handler: db_sync_handler.sync_product
-    events:
-      - schedule:
-          rate: cron(6 23 * * ? *)
-  syncBusinessCategory:
-    handler: db_sync_handler.sync_business_category
-    events:
-      - schedule:
-          rate: cron(12 */6 * * ? *)
-  syncProductBusinessCategory:
-    handler: db_sync_handler.sync_product_business_category
-    events:
-      - schedule:
-          rate: cron(15 */6 * * ? *)
-  syncProductLang:
-    handler: db_sync_handler.sync_product_lang
-    events:
-      - schedule:
-          rate: cron(18 */6 * * ? *)
-  syncManufacturer:
-    handler: db_sync_handler.sync_manufacturer
-    events:
-      - schedule:
-          rate: cron(21 */6 * * ? *)
-  syncOrderCartRule:
-    handler: db_sync_handler.sync_order_cart_rule
-    events:
-      - schedule:
-          rate: cron(24 */6 * * ? *)
-  syncCartRule:
-    handler: db_sync_handler.sync_cart_rule
-    events:
-      - schedule:
-          rate: cron(27 */6 * * ? *)
-  syncOrderDetail:
-    handler: db_sync_handler.sync_order_detail
-    events:
-      - schedule:
-          rate: cron(30 */6 * * ? *)
-  syncWarehouseSupplierOrderDetail:
-    handler: db_sync_handler.sync_warehouse_supplier_order_detail
-    events:
-      - schedule:
-          rate: cron(36 */6 * * ? *)
-  syncWarehouseSupplierOrder:
-    handler: db_sync_handler.sync_warehouse_supplier_order
-    events:
-      - schedule:
-          rate: cron(39 */6 * * ? *)
-  syncSupplierOrderHistory:
-    handler: db_sync_handler.sync_supplier_order_history
-    events:
-      - schedule:
-          rate: cron(42 */6 * * ? *)
-  syncCustomer:
-    handler: db_sync_handler.sync_customer
-    events:
-      - schedule:
-          rate: cron(45 */6 * * ? *)
-  syncAddress:
-    handler: db_sync_handler.sync_address
-    events:
-      - schedule:
-          rate: cron(48 */6 * * ? *)
-  syncCountry:
-    handler: db_sync_handler.sync_country
-    events:
-      - schedule:
-          rate: cron(51 */6 * * ? *)
-  syncPack:
-    handler: db_sync_handler.sync_pack
-    events:
-      - schedule:
-          rate: cron(54 */6 * * ? *)
+
           
           
 #   execSqlExecuter:
