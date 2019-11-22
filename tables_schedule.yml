@@ -1,0 +1,5 @@
+mytables:
+  - ps_shop:
+      rate: "0 */6 * * ? *"
+  - ps_customer:
+      rate: "8 */6 * * ? *"
