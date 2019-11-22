@@ -2,18 +2,8 @@ service: database-sync
 
 custom:
   pythonRequirements:
-    dockerizePip: true
+    dockerizePip: false
 
-  sourceHost: ${opt:source_host}
-  sourceUser: ${opt:source_user}
-  sourcePass: ${opt:source_pass}
-  sourceDb: ${opt:source_db}
-  targetHost: ${opt:target_host}
-  targetUser: ${opt:target_user}
-  targetPass: ${opt:target_pass}
-  targetDb: ${opt:target_db}
-  dailyTables: ${opt:daily_tables}
-  hourlyTables: ${opt:hourly_tables}
 
 package:
   exclude:
@@ -24,25 +14,17 @@ provider:
   name: aws
   vpc:
     securityGroupIds:
-      - ${opt:security_group}
+      - ${file(env/config.yml):${opt:stage}.SECURITY_GROUP}
     subnetIds:
-      - ${opt:subnet_1}
-      - ${opt:subnet_2}
-      - ${opt:subnet_3}
+      - ${file(env/config.yml):${opt:stage}.SUBNET_1}
+      - ${file(env/config.yml):${opt:stage}.SUBNET_2}
+      - ${file(env/config.yml):${opt:stage}.SUBNET_3}
   timeout: 900
   runtime: python3.6
   region: eu-west-1
-  environment:
-    SOURCE_HOST: ${self:custom.sourceHost}
-    SOURCE_USER: ${self:custom.sourceUser}
-    SOURCE_PASS: ${self:custom.sourcePass}
-    SOURCE_DB: ${self:custom.sourceDb} 
-    TARGET_HOST: ${self:custom.targetHost}
-    TARGET_USER: ${self:custom.targetUser}
-    TARGET_PASS: ${self:custom.targetPass}
-    TARGET_DB: ${self:custom.targetDb}
-    TABLE_LIST_DAILY: ${self:custom.dailyTables}
-    TABLE_LIST_HOURLY: ${self:custom.hourlyTables}
+
+  environment: ${file(env/config.yml):${opt:stage}}
+
 
 functions:
   syncHourly:
