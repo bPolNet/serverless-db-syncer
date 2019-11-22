@@ -14,16 +14,16 @@ provider:
   name: aws
   vpc:
     securityGroupIds:
-      - ${file(env/config.yml):${opt:stage}.SECURITY_GROUP}
+      - ${file(env/config.yml).SECURITY_GROUP}
     subnetIds:
-      - ${file(env/config.yml):${opt:stage}.SUBNET_1}
-      - ${file(env/config.yml):${opt:stage}.SUBNET_2}
-      - ${file(env/config.yml):${opt:stage}.SUBNET_3}
+      - ${file(env/config.yml).SUBNET_1}
+      - ${file(env/config.yml).SUBNET_2}
+      - ${file(env/config.yml).SUBNET_3}
   timeout: 900
   runtime: python3.6
   region: eu-west-1
 
-  environment: ${file(env/config.yml):${opt:stage}}
+  environment: ${file(env/config.yml)}
 
 
 functions:
