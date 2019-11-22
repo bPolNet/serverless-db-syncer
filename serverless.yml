@@ -12,6 +12,8 @@ custom:
   targetUser: ${opt:target_user}
   targetPass: ${opt:target_pass}
   targetDb: ${opt:target_db}
+  dailyTables: ${opt:daily_tables}
+  hourlyTables: ${opt:hourly_tables}
 
 package:
   exclude:
@@ -39,8 +41,8 @@ provider:
     TARGET_USER: ${self:custom.targetUser}
     TARGET_PASS: ${self:custom.targetPass}
     TARGET_DB: ${self:custom.targetDb}
-    TABLE_LIST: ${file(../tables_schedule.yml):myTableList}
-
+    TABLE_LIST_DAILY: ${self:custom.dailyTables}
+    TABLE_LIST_HOURLY: ${self:custom.hourlyTables}
 
 functions:
   syncHourly:

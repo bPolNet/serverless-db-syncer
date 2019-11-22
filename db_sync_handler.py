@@ -69,12 +69,12 @@ def get_success_response(event):
 
 
 def sync_daily(event, context):
-    for sync_table in os.environ['TABLE_LIST']:daily:
+    for sync_table in os.environ['TABLE_LIST_DAILY']:
         sync_table_in_loop(sync_table)
     return get_success_response(event)
 
 
 def sync_hourly(event, context):
-    for sync_table in os.environ['TABLE_LIST']:hourly:
+    for sync_table in os.environ['TABLE_LIST_HOURLY']:
         sync_table_in_loop(sync_table)
     return get_success_response(event)
