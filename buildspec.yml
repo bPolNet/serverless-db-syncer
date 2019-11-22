@@ -16,4 +16,4 @@ phases:
   build:
     commands:
       - ls -al
-      - sls deploy --stage ${BUILD_ENV}
+      - sls deploy --stage
