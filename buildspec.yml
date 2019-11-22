@@ -1,11 +1,15 @@
-version: 0.1
+version: 0.2
 
 phases:
   install:
+    runtime-versions:
+      nodejs: 8
+
     commands:
       - pwd
       - ls -al
-      - npm install -g serverless
+      - envsubst < env/configs_api.yml > env/config.yml
+      - npm install -g serverless@1.46.1
   pre_build:
     commands:
       - pwd && sls plugin install -n serverless-python-requirements

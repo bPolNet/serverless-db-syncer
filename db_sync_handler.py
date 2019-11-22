@@ -69,12 +69,12 @@ def get_success_response(event):
 
 
 def sync_daily(event, context):
-    for sync_table in os.environ['TABLE_LIST_DAILY'][0].split(", "):
-        sync_table_in_loop(json.loads(sync_table))
+    for sync_table in os.environ['TABLE_LIST_DAILY'].split(","):
+        sync_table_in_loop(sync_table)
     return get_success_response(event)
 
 
 def sync_hourly(event, context):
-    for sync_table in os.environ['TABLE_LIST_HOURLY'][0].split(", "):
-        sync_table_in_loop(json.loads(sync_table))
+    for sync_table in os.environ['TABLE_LIST_HOURLY'].split(","):
+        sync_table_in_loop(sync_table)
     return get_success_response(event)
