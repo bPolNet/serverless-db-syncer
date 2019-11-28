@@ -16,4 +16,4 @@ class SqlFileExecutor:
                 sql_count = sql_count + 1
             self.__conn.commit()
 
-        return sql_count;
+        return sql_count
