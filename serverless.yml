@@ -31,7 +31,7 @@ functions:
     handler: db_sync_handler.sync_hourly
     events:
       - schedule:
-          rate: rate(15 minutes)
+          rate: rate(1 hour)
   syncDaily:
     handler: db_sync_handler.sync_daily
     events:
